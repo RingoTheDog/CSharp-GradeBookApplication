@@ -16,6 +16,8 @@ namespace GradeBook.GradeBooks
 
         public GradeBookType Type { get; set; }
 
+        public bool IsWeighted { get; set; }
+
         public BaseGradeBook(string name)
         {
             Name = name;
@@ -78,6 +80,7 @@ namespace GradeBook.GradeBooks
 
         public static BaseGradeBook Load(string name)
         {
+
             if (!File.Exists(name + ".gdbk"))
             {
                 Console.WriteLine("Gradebook could not be found.");
@@ -92,6 +95,8 @@ namespace GradeBook.GradeBooks
                     return ConvertToGradeBook(json);
                 }
             }
+
+           
         }
 
         public void Save()
