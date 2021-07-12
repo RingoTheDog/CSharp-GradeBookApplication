@@ -6,16 +6,16 @@ using System.Text;
 
 namespace GradeBook.GradeBooks
 {
-    public class RankedGradeBook:BaseGradeBook
+    public class RankedGradeBook : BaseGradeBook
     {
-        public RankedGradeBook(string name):base(name)
+        public RankedGradeBook(string name) : base(name)
         {
             Type = GradeBookType.Ranked;
         }
 
 
 
-    public override char GetLetterGrade(double averageGrade)
+        public override char GetLetterGrade(double averageGrade)
         {
 
 
@@ -27,23 +27,23 @@ namespace GradeBook.GradeBooks
             {
                 throw new InvalidOperationException("You need at least 5 students for ranked grading..");
             }
-                var threshold = (int)Math.Ceiling(Students.Count * 0.2);
-                var grades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
+            var threshold = (int)Math.Ceiling(Students.Count * 0.2);
+            var grades = Students.OrderByDescending(e => e.AverageGrade).Select(e => e.AverageGrade).ToList();
 
-                if (grades[threshold - 1] <= averageGrade)  
-                    return 'A';
-                else if (grades[(threshold * 2) - 1] <= averageGrade)
-                    return 'B';
-                else if (grades[(threshold * 3) - 1] <= averageGrade)
-                    return 'C';
-                else if (grades[(threshold * 4) - 1] <= averageGrade)
-                    return 'D';
-                else return 'F';
-            }
-          
-                //return base.GetLetterGrade(averageGrade);
-            }
+            if (grades[threshold - 1] <= averageGrade)
+                return 'A';
+            else if (grades[(threshold * 2) - 1] <= averageGrade)
+                return 'B';
+            else if (grades[(threshold * 3) - 1] <= averageGrade)
+                return 'C';
+            else if (grades[(threshold * 4) - 1] <= averageGrade)
+                return 'D';
+            else return 'F';
+
+            //return base.GetLetterGrade(averageGrade);
 
         }
-    
 
+    }
+
+}
